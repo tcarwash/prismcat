@@ -99,7 +99,7 @@ def cli():
     import argparse
 
     parser = argparse.ArgumentParser(
-        prog="prismlog",
+        prog="prism",
         description="""
         parse input, highlight lines with regex, color priority
          follows the rainbow RYGBV(P) -- Red Yellow Green Blue

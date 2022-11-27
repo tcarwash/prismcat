@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "prismcat"
-version = "1.0.0"
+version = "1.0.1"
 description = "parse logs and make pretty colors"
 authors = ["Tyler F. Carr <tcarwash@gmail.com>"]
 license = "MIT"
