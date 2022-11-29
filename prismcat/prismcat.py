@@ -26,7 +26,7 @@ def check(pattern, line):
 
 
 def main(
-    file,
+    input,
     outfile,
     red: str,
     yellow: str,
@@ -38,37 +38,38 @@ def main(
 ) -> bool:
     out = []
     args = {}
-    for line in file:
-        f_line = None
-        if purple and check(purple, line):
-            color = bcolors.HEADER
-            f_line = color + line
-            args["purple"] = {"regex": purple, "color": color}
-        if blue and check(blue, line):
-            color = bcolors.OKBLUE
-            f_line = color + line
-            args["blue"] = {"regex": blue, "color": color}
-        if green and check(green, line):
-            color = bcolors.OKGREEN
-            f_line = color + line
-            args["green"] = {"regex": green, "color": color}
-        if yellow and check(yellow, line):
-            color = bcolors.WARNING
-            f_line = color + line
-            args["yellow"] = {"regex": yellow, "color": color}
-        if red and check(red, line):
-            color = bcolors.FAIL
-            f_line = color + line
-            args["red"] = {"regex": red, "color": color}
-        if error and check(error, line):
-            color = bcolors.FAIL + bcolors.UNDERLINE
-            f_line = color + line
-            args["error"] = {"regex": error, "color": color}
-        if f_line:
-            formatted_line = f_line + bcolors.ENDC
-            out.append(formatted_line)
-        elif not abbr:
-            out.append(line)
+    for file in input:
+        for line in file:
+            f_line = None
+            if purple and check(purple, line):
+                color = bcolors.HEADER
+                f_line = color + line
+                args["purple"] = {"regex": purple, "color": color}
+            if blue and check(blue, line):
+                color = bcolors.OKBLUE
+                f_line = color + line
+                args["blue"] = {"regex": blue, "color": color}
+            if green and check(green, line):
+                color = bcolors.OKGREEN
+                f_line = color + line
+                args["green"] = {"regex": green, "color": color}
+            if yellow and check(yellow, line):
+                color = bcolors.WARNING
+                f_line = color + line
+                args["yellow"] = {"regex": yellow, "color": color}
+            if red and check(red, line):
+                color = bcolors.FAIL
+                f_line = color + line
+                args["red"] = {"regex": red, "color": color}
+            if error and check(error, line):
+                color = bcolors.FAIL + bcolors.UNDERLINE
+                f_line = color + line
+                args["error"] = {"regex": error, "color": color}
+            if f_line:
+                formatted_line = f_line + bcolors.ENDC
+                out.append(formatted_line)
+            elif not abbr:
+                out.append(line)
 
     out = "".join(out)
     if outfile:
@@ -113,7 +114,7 @@ def cli():
     parser.add_argument("-o", "--outfile", type=argparse.FileType("w"))
     parser.add_argument(
         "input",
-        nargs="?",
+        nargs="*",
         type=argparse.FileType("r"),
         default=sys.stdin,
     )
