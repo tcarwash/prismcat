@@ -1,4 +1,5 @@
 # PrismCat
+<img src="prismcat.png"  width="400">
 
 ## Explanation
 PrismCat reads a file (or stdin) and highlights lines based on regex supplied in arguments. 

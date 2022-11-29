@@ -63,7 +63,7 @@ def main(
         if error and check(error, line):
             color = bcolors.FAIL + bcolors.UNDERLINE
             f_line = color + line
-            args["error"] = {"error": red, "color": color}
+            args["error"] = {"regex": error, "color": color}
         if f_line:
             formatted_line = f_line + bcolors.ENDC
             out.append(formatted_line)
@@ -74,8 +74,6 @@ def main(
     if outfile:
         header = f"{bcolors.OKBLUE}Original File: {file.name}{bcolors.ENDC}\n"
         for key in args:
-            print(key)
-            print(type(key))
             header += f"{args[key]['color']}{key}: \
                 \"{args[key]['regex']}\"{bcolors.ENDC}\n"
         header = (
